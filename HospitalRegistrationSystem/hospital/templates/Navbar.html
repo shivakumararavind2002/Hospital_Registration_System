@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Navbar</title>
+  <link rel="stylesheet" href="{% static 'css/MyStyle.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!--datatable cdn start-->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script> 
+  <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script> 
+  <script src="https://cdn.datatables.net/buttons/3.2.5/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.2.5/js/buttons.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.2.5/js/buttons.html5.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.5/css/buttons.dataTables.css">
+  <script>
+   $(document).ready(function () {
+          $('#doctorTable').DataTable({
+            dom:'Bfrtip',
+            buttons:[
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+          });
+      });
+  </script>
+  <!-- dtat cnd end -->
+   <style>
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: hsl(210, 100%, 55%);
+      padding: 10px 30px;
+    }
+   </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar">
+    <div class="logo"><i class="fa-solid fa-house-chimney-medical"></i> Hospital Registration System</div>
+    {% if not request.user.is_staff %}
+      <div class="nav-links">
+         <a href="{% url 'aboutMe' %}">About</a>
+         <a href="{% url 'contact' %}">Contact</a>
+         <a href="{% url 'logout' %}"><button class="logout-btn" >LogIn</button></a>
+      </div>  
+    
+    {% endif%}
+   {% if request.user.is_staff %}
+    <div class="nav-links">
+      <a href="{% url 'about' %}"><i class="fa-duotone fa-solid fa-house"></i> Home</a>
+      <div class="dropdown">
+        <div class="dropdown-btn"> Patient</div>
+        <div class="dropdown-content">
+          <a href="{% url 'patientslist' %}">Patient List</a>
+          <a href="{% url 'addpatients' %}">Add Patient</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <div class="dropdown-btn"> Doctor</div>
+        <div class="dropdown-content">
+          <a href="{% url 'doctorlist' %}">Doctor List</a>
+          <a href="{% url 'doctorAdd' %}">Add Doctor</a>
+        </div>
+      </div>
+
+      <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+    {% endif%}
+  </nav>
+
+  <!-- Page content -->
+  {% block body %}
+
+  {% endblock %}
+
+</body>
+</html>

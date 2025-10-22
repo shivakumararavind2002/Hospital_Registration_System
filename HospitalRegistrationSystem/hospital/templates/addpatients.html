@@ -1,0 +1,72 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+    <style>
+        .addpatientcontainer h1{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        }
+        .boxVal{
+                background-color: rgb(180, 179, 179);
+                width: 50%;
+                display: flex;
+                align-items:baseline;
+                justify-content: space-around;
+                flex-direction: column;
+                gap: 10px;
+                border-radius: 10px;
+                margin-left: 26%;
+                padding-top: 15px;
+                padding-bottom: 15px;
+        }
+        .boxVal label{
+        }
+        .boxVal input{
+                width: 90%;
+                height:30px;
+                margin-left: 30px;
+                border-radius: 10px;
+        }
+        .butt {
+           width: 30%;
+           height: 30px;
+           background-color: #0a0909;
+           border: none;
+           border-radius: 10px;
+           color: #ffffff;
+        }
+    </style>
+    <div class="addpatientcontainer">
+            <h1>Add Patients</h1>
+            <div >
+                <form action="" method="post" class="boxVal">
+                        {% csrf_token %}
+                        <label for="">Patient name</label>
+                        <input type="text" name="name" required>
+                        <label for="">Patient gender</label>
+                        <input type="text" name="gender" required>
+                        <label for="">Patient Mobile Number</label>
+                        <input type="text" name="Mobile" required>
+                        <label for="">Patient Address</label>
+                        <input type="text" name="Address" required>
+                        <label for="">Patient Doctor Name</label>
+                        <input type="text" name="Doctor" required>
+                         <button class="butt" value="add">Add</button>
+                </form>
+            </div>
+
+    </div>
+    {% if error == 'no' %}
+    <script>
+        alert('record saved Successfully')
+        window.location.href = "{% url 'patientslist' %}";
+    </script>
+    {% endif %}
+     {% if error == 'yes' %}
+    <script>
+        alert('something went wrong....check it')
+    </script>
+    {% endif %}
+    {% endblock %}

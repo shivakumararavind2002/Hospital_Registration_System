@@ -1,0 +1,80 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+     <style>
+.BodyContainer h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.FormContainer{
+    background-color: #808080;
+    width: 45%;
+    margin-left: 30%;
+    border-radius: 10px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.FormContainer label{
+    margin-left: 2%;
+    color: #ffffff;
+}
+.FormContainer input{
+    margin-left: 10%;
+    width: 86%;
+    height: 30px;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.buttons button{
+    width: 30%;
+    height: 30px;
+    background-color: #0a0909;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+}
+.buttons a{
+     text-decoration: none;
+            color: white;
+             width: 30%;
+            height: 30px;
+            background-color: #0a0909;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+}
+     </style>
+    <div class="BodyContainer">
+         <h2>Edit Patient Details</h2>
+
+<form method="POST" class="FormContainer">
+    {% csrf_token %}
+    <label>Name:</label><br>
+    <input type="text" name="name" value="{{ patient.name }}" required><br><br>
+
+    <label>Gender:</label><br>
+    <input type="text" name="gender" value="{{ patient.gender }}" required><br><br>
+
+    <label>Mobile:</label><br>
+    <input type="text" name="mobile" value="{{ patient.mobile }}" required><br><br>
+
+    <label>Address:</label><br>
+    <input type="text" name="addr" value="{{ patient.address }}" required><br><br>
+
+    <label>Doctor Name:</label><br>
+    <input type="text" name="Dname" value="{{ patient.docter_name }}" required><br><br>
+
+   <div class="buttons">
+     <button type="submit">Update</button>
+    <a href="{% url 'patientslist' %}">Cancel</a>
+   </div>
+</form>
+    </div>
+
+    {% endblock %}

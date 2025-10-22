@@ -1,0 +1,91 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+    <style>
+        .ContactContainer{
+            background-color: #808080;
+            margin-top: 0px;
+            min-height: 525px;
+            border: 1px solid transparent;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+           height: 300px;
+            color: hsl(0, 14%, 99%);
+            background: url("{% static 'images/Contactimage.jpg' %}") no-repeat center center;
+           background-size: cover;
+        }
+        .content h1,h4{
+            margin-left: 3%;
+        }
+        .ContactCards{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .MyContCard1{
+            margin-top: 50px;
+            width: 250px;
+            height: 100px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items:baseline;
+            flex-direction: column;
+            border-radius: 5px;
+            padding-top: 5px;
+            padding-left: 3px;
+             transition:  background-color 0.5s ease;
+        }
+        .MyContCard1 a{
+            text-decoration: none;
+            color: #ff0000;
+        }
+         .MyContCard1:hover{
+            background-color: #000000;
+            color: #f5f5f5;
+         }
+         @media (max-width: 770px){
+            .ContactCards{
+                display: flex;
+                flex-direction: column;
+            }
+         }
+         .contactfooter{
+              background-color: hsl(210, 100%, 55%);
+              color: #f5f5f5;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 33px;
+              height: 40px;
+         }
+    </style>
+    <div class="ContactContainer">
+            <div class="content">
+                <h1 >Contact Us</h1>
+                <h4>We're here to help you</h4>
+            </div>
+            <div class="ContactCards">
+                <div class="MyContCard1">
+                 <h3><i class="fa-solid fa-phone"></i>   Contact</h3><br>
+                 <h5><a href="tel:+91 8867310122">+91 8867310122</a></h5>
+                </div>
+
+                <div class="MyContCard1">
+                 <h3><i class="fa-regular fa-envelope-open"></i>   Send Email</h3><br>
+                 <h5><a href="mailto:shivakumararavind2002@gmail.com">shivakumararavind2002@gmail.com</a></h5>
+                </div>
+
+                <div class="MyContCard1">
+                 <h3><i class="fa-solid fa-location-dot"></i> Address</h3><br>
+                 <p>Honnapura,periyapattana tahuk,mysore district,karnataka 571106</p>
+                </div>
+            </div>
+            <div class="contactfooter">
+                <h5>Copyright © Docpulse - All Rights Reserved | Privacy Policy</h5>
+            </div>
+    </div>
+    {% endblock %}

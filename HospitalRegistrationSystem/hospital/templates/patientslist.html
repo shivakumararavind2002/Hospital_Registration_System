@@ -1,0 +1,69 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+    <style>
+        .patientList h1{
+         display: flex;
+         align-items: center;
+         justify-content: center;
+        }
+        .patientTable{
+            border-collapse:collapse;
+            border-spacing: 10px;
+            margin-top: 100px;
+            margin-left: 200px; 
+        }
+         .patientTable tr{
+            background-color: #808080;
+        }
+         .patientTable td{
+            background-color: #d8d8d8;
+        }
+         th, td {
+             padding: 12px 20px;
+             text-align: left;
+             }
+        .DeletePatient{
+            background-color: #d22a2a;
+            border:none;
+            height: 30px;
+            width: 60px;
+            color: #ffffff;
+            border-radius: 10px;
+        }
+    </style>
+    <div class="patientList">
+            <h1> Patients List</h1>
+            <table class="patientTable" id="doctorTable">
+                <thead>
+                        <tr>
+                                <th>Patient Id</th>
+                                <th>Patient Name</th>
+                                <th>Patient gender</th>
+                                <th>Patient mobile number</th>
+                                <th>Patient docter_name</th>
+                                <th>Patient address</th>
+                                <th>Delete</th>
+                                <th>Edite</th>
+                        </tr>
+                </thead>
+                <tbody>
+                       {% for i in pet %}
+
+                       <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.gender}}</td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.docter_name}}</td>
+                        <td>{{i.address}}</td>
+                        <td><a href="{% url 'deletePatient' i.id %}" onclick="return confirm('are you sure.....')"><button class="DeletePatient">Delete</button></a></td>
+                        <td><a href="{% url 'editpatient' i.id %}"><button class="DeletePatient">Edite</button></a></td>
+                       </tr>
+                       {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    
+    {% endblock %}

@@ -1,0 +1,151 @@
+    {% extends 'Navbar.html' %}
+    {% load static %}
+
+    {% block body %}
+    <style>
+        .BodyContainer{
+         background: url("{% static 'images/indexpic.jpg' %}") no-repeat center center;
+         background-size: cover;
+         height: 533px;
+         padding-top: 100px;
+         padding-left: 2%;
+        }
+        .BodyContainer p{
+                background-color: transparent;
+                box-shadow: 4px 4px 10px hsl(0, 4%, 5%);
+                width: 60%;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                padding-left: 2%;
+                color: #fefefe;
+                font-size: larger;
+                border-radius: 10px;
+        }
+        .speciality{
+                background-color: #808080;
+                height: 533px;
+        }
+        .speciality h1{
+                display: flex;
+                align-items: center;
+                justify-content: baseline;
+                color: #f5f5f5;
+                margin-left: 2%;
+        }
+        .contactfooter{
+              background-color: hsl(210, 100%, 55%);
+              color: #f5f5f5;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 40px;
+         }
+         .cordCoontainer{
+                margin-top: 10%;
+                color: hwb(240 5% 95%);
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+         }
+         .cards1{
+                border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                background: url("{% static 'images/pediatric.jpg' %}") no-repeat center center;
+                background-size: cover;
+                display: flex;
+                align-items: end;
+                justify-content: center;
+         }
+         .cards2{
+                border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                background: url("{% static 'images/neurologist.jpg' %}") no-repeat center center;
+                background-size: cover;
+                display: flex;
+                align-items: end;
+                justify-content: center;
+                
+         }
+         .cards3{
+                border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                background: url("{% static 'images/cardiology.jpeg' %}") no-repeat center center;
+                background-size: cover;
+                display: flex;
+                align-items: end;
+                justify-content: center;
+         }
+         .cards4{
+                border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                background: url("{% static 'images/Ophthalmologist.webp' %}") no-repeat center center;
+                background-size: cover;
+                display: flex;
+                align-items: end;
+                justify-content: center;
+
+                
+         }
+         @media (max-width:770px) {
+                .cordCoontainer{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-direction: column;
+                height: 250px;
+                font-size: smaller;  
+         }
+         .cards1{
+                width: 30%;
+                height: 250px;
+         }
+         .cards2{
+                width: 30%;
+                height: 250px;
+         }
+         .cards3{
+                width: 30%;
+                height: 250px;
+         }
+         .cards4{
+                width: 30%;
+                height: 250px;
+         }
+         .BodyContainer p{
+                margin-left: 20%;
+         }
+         }
+    </style>
+    <div class="BodyContainer">
+            <p>Hello Sir/Ma'am <br>
+            Welecome to Hospital Registration System .This Application use to displays the lists and total counts of patients, doctors, and appointments.</p>
+    </div>
+    <div class="speciality">
+        <h1>Speciality</h1>
+        <div class="cordCoontainer">
+                <div class="cards1">
+                        <h3>Padiatricians</h3>
+                </div>
+                <div class="cards2">
+                        <h3>Neurologists</h3>
+                </div>
+                <div class="cards3">
+                        <h3>
+                                Cardiologists
+                        </h3>
+                </div>
+                <div class="cards4">
+                        <h3>Ophthalmologists</h3>
+                </div>
+        </div>
+    </div>
+     <div class="contactfooter">
+                <h5>Copyright © Docpulse - All Rights Reserved | Privacy Policy</h5>
+      </div>
+    {% endblock %}
+

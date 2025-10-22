@@ -1,0 +1,165 @@
+    {% extends 'Navbar.html' %}
+    {% load static %}
+
+    {% block body %}
+    <style>
+        .Apointment h2{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        }
+        .appointmentList{
+            border-collapse:collapse;
+            border-spacing: 10px;
+            margin-top: 100px;
+            margin-left: 250px;         }
+        .appointmentList tr{
+                
+                background-color: #808080;
+        }
+        .appointmentList tr{
+            background-color: #808080;
+        }
+         .appointmentList td{
+            background-color: #d8d8d8;
+        }
+         th, td {
+             padding: 12px 20px;
+             text-align: left;
+             }
+             .Addappointment{
+                display: flex;
+                align-items: center;
+                justify-content: end;
+             }
+             .Addappointment a{
+                background-color: #0a0909;
+                border: none;
+                border-radius: 10px;
+                height: 40px;
+                width: 10%;
+                color: white;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+             }
+             .delbut{
+                 background-color: #d22a2a;
+                 border:none;
+                 height: 30px;
+                 width: 60px;
+                 color: #ffffff;
+                 border-radius: 10px;
+             }
+             .countofp{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding-top: 20px;
+             }
+             .cunters{
+                border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+               box-shadow: 4px 4px 10px #030303;
+                gap: 10px;
+                color: #0d0d0d;
+                text-decoration: none;
+
+             }
+             .cunters a{
+                color: #ffffff;
+             }
+             .ContainerOfApointment{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                overflow:auto;
+                background-color: #ffffff;
+                height: 300px;
+             }
+             .appointFeteched{
+               border-radius: 10px;
+                width: 15%;
+                height: 175px;
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                flex-direction: column;
+               box-shadow: 4px 4px 10px #030303;
+                gap: 10px;
+                color: #050505;
+                text-decoration: none;
+             }
+    </style>
+    <div class="apointViewTod">
+        <h2>Count of Doctors,Patients and Appointment</h2>
+        <div class="countofp">
+                <a href="{% url 'doctorlist' %}" class="cunters">
+                        <h3 style="color: #b11414;">Doctor</h3>
+                        <h3>{{d}}</h3>
+                </a>
+                <a href="{% url 'patientslist' %}" class="cunters">
+                                <h3 style="color: #b11414;">Patient</h3>
+                                <h3>{{p}}</h3>
+                 </a>
+                
+                <a href="#doctorTable" class="cunters">
+                                <h3 style="color: #b11414;">Appointment</h3>
+                                <h3>{{a}}</h3>
+                </a>
+                        
+        </div>
+        <br><br>
+        <h2>Today Appointments</h2>
+        <div class="ContainerOfApointment">
+                {% for i in dal %}
+                  {% if i.date1 == toDy %}
+                      <div class="appointFeteched">
+                        <h3><i class="fa-brands fa-ideal"> </i>: {{i.id}}</h3>
+                        <h4><i class="fa-solid fa-user-doctor"> </i> : {{i.doctor}}</h4>
+                        <h4><i class="fa-solid fa-bed"> </i>: {{i.patient}}</h4>
+                        <h5><i class="fa-solid fa-timeline"> </i>: {{i.time1}}</h5>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+    <br><br>
+    <div class="Apointment">
+        <h2>Appointments...</h2>
+        <table class="appointmentList" id="doctorTable">
+                <thead>
+                        <tr>
+                                <th>Appointment Id</th>
+                                <th>Doctor Name</th>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Delete</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        {% for i in app %}
+                       <tr>
+                         <th>{{i.id}}</th>
+                        <th>{{i.doctor}}</th>
+                        <th>{{i.patient}}</th>
+                        <th>{{i.date1}}</th>
+                        <th>{{i.time1}}</th>
+                        <th><a href="{% url 'delApoi' i.id %}"><button class="delbut">delete</button></a></th>
+                       </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
+        <div class="Addappointment">
+                <a href="{% url 'addapointment' %}">Add Appointment</a>
+        </div>
+    </div>
+    {% endblock %}
+

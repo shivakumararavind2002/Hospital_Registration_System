@@ -1,0 +1,100 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+    <style>
+        .addAppointment h2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .addAppinputs{
+            display: flex;
+            align-items: baseline;
+            justify-content: baseline;
+            flex-direction: column;
+            background-color: rgb(103, 100, 100);
+            width: 40%;
+            margin-left: 30%;
+            margin-top: 30px;
+            color: #ffffff;
+            gap: 10px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        #label{
+            margin-left: 1%;
+        }
+       
+        #sec{
+            margin-left: 10%;
+        }
+        .buttns{
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .buttns button{
+              width: 30%;
+            height: 30px;
+            background-color: #0a0909;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+        }
+        .buttns a{
+            text-decoration: none;
+            color: white;
+             width: 30%;
+            height: 30px;
+            background-color: #0a0909;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="addAppointment">
+        <h2>Add Appointment</h2>
+        <form action="" method="post" class="addAppinputs">
+        {% csrf_token %}
+            <lable id="label">Doctor Name</lable>
+            <select name="doctor" id="sec">
+                 {% for i in doctor %}
+                 <option value="{{i.name}}">{{i.name}} [{{i.id}}]</option>
+                 {% endfor%}
+            </select>
+            <lable id="label">Patient Name</lable>
+            <select name="patient" id="sec">
+                 {% for i in patient %}
+                 <option value="{{i.name}}">{{i.name}} [{{i.id}}]</option>
+                 {% endfor%}
+            </select>           
+             <lable id="label">Date</lable>
+            <input type="date" name="date" required>
+            <lable id="label">Time</lable>
+            <input type="time" name="time" required>
+           <div class="buttns">
+             <button class="addButt" value="add">Add</button>
+            <a href="{% url 'about' %}">Cancel</a>
+           </div>
+        </form>
+    </div>
+
+    {% if error == "no" %}
+    <script>
+        alert('record seved  Successfully');
+        window.location.href = "{% url 'about' %}";
+    </script>
+    {% endif %}
+
+
+    {% if error == "yes" %}
+    <script>
+        alert('Somethig went wrong , try Again');
+    </script>
+    {% endif %}
+
+
+    {% endblock %}

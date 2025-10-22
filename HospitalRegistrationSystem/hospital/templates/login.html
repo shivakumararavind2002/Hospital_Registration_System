@@ -1,0 +1,77 @@
+    {% extends 'Navbar.html' %}
+    {% load static %}
+
+    {% block body %}
+
+   {% if error == "no" %}
+    <script>
+        alert('Logged In Successfully');
+        window.location.href = "{% url 'home' %}";
+    </script>
+    {% endif %}
+
+
+    {% if error == "yes" %}
+    <script>
+        alert('Invalid Login Credantials , try Again');
+    </script>
+    {% endif %}
+
+    <style>
+        .container{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            gap: 10px;
+            display: flex;
+             align-items: baseline;
+             justify-content: center;
+             flex-direction: column;
+             background-color: gray;
+             margin-top: 100px;
+             width: 20%;
+             margin-left: 40%;
+             border-radius: 10px;
+        }
+        .container h2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:100%;
+        }
+        .container label{
+            margin-left: 2%;
+        }
+        .forminp{
+            display: flex;
+             align-items: baseline;
+             justify-content: center;
+             flex-direction: column;
+             width: 100%;
+        }
+        .forminp input{
+            width: 88%;
+        }
+        .form-control{
+            background-color: hsl(0, 0%, 5%);
+            color: #fefefe;
+            height: 30px;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+    <div class="container" >
+        <h2 class="text_center">Admin Login</h2>
+        <form method="post" class="forminp">
+            {% csrf_token %}
+            <label >Admin name</label>
+            <input type="text" class="form-control" name="uname">
+            <label >password</label>
+            <input type="password" class="form-control" name="pwd">
+             <br>
+             <input type="submit" value="login" class="form-control">
+        </form>
+    </div>
+
+    
+    {% endblock %}
+

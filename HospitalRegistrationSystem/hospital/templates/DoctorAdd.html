@@ -1,0 +1,76 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+    
+    <style>
+        .adddoc{
+            background-color: gray;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 520px;
+        }
+        .ValueInput{
+            border:1px solid #060606;
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            height: 270px;
+            gap: 10px;
+            background-color: #bdbaba;
+            border-radius: 10px;
+            padding-top: 10px;
+        }
+        .ValueInput input{
+            width: 90%;
+            height: 30px;
+            margin-left: 10px;
+            font-size: large;
+        }
+        .ValueInput label{
+            margin-left: 10px;
+        }
+        .ValueInput button{
+            width: 30%;
+            height: 30px;
+            margin-left:38% ;
+            background-color: #0a0909;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+
+    
+    <div class="adddoc">
+        <div>
+            <h1>Add Doctor</h1>
+        </div>
+        <form class="ValueInput" method="post" >
+            {% csrf_token %}
+            <label for="" >Name</label>
+            <input type="text" name="Name" required>
+            <label for="" >Mobile</label>
+            <input type="number" maxlength="10" name="Mobile" required>
+            <label for="" >Special</label>
+            <input type="text" name="Special" required>
+            <button value="Add">Add</button>
+        </form>
+    </div>
+
+    {% if error == "no" %}
+    <script>
+        alert('record seved  Successfully');
+        window.location.href = "{% url 'doctorlist' %}";
+    </script>
+    {% endif %}
+
+
+    {% if error == "yes" %}
+    <script>
+        alert('Somethig went wrong , try Again');
+    </script>
+    {% endif %}
+
+    {% endblock %}

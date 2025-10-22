@@ -1,0 +1,64 @@
+{% extends 'Navbar.html' %}
+ {% load static %}
+
+    {% block body %}
+     <style>
+        .DoctorContainer h3{
+            color: hsl(0, 5%, 4%);
+            margin-top: 10px;
+            margin-left: 45%;
+        }
+       .TableDec {
+            border-collapse:collapse;
+            border-spacing: 10px;
+            margin-top: 100px;
+            margin-left: 250px; 
+        }
+        .TableDec tr{
+            background-color: #808080;
+        }
+         .TableDec td{
+            background-color: #d8d8d8;
+        }
+        th, td {
+             padding: 12px 20px;
+             text-align: left;
+             }
+        .DleteButt{
+            background-color: #d22a2a;
+            border:none;
+            height: 30px;
+            width: 60px;
+            color: #ffffff;
+            border-radius: 10px;
+        }
+
+    </style>
+    <div class="DoctorContainer" >
+        <h3>Doctors List</h3>
+            <table  class="TableDec" id="doctorTable" >
+                <thead>
+                    <tr>
+                        <th>Doctor Id</th>
+                        <th>Doctor Name</th>
+                        <th>Doctor Phone Number</th>
+                        <th>Doctor Specialization</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for i in doc %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.special}}</td>
+                        <td><a href="{% url 'deleteDoctor' i.id %}" onclick="return confirm('are you sure....')"><button class="DleteButt">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+
+    </div>
+    {% endblock %}
